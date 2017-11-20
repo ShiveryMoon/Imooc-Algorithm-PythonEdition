@@ -22,7 +22,7 @@ class Spfa(object):
                     nextVert.setDistance(newDist)
                     nextVert.setPred(currentVert)
                     nextVert.setVisited(True)
-                    if nextVert not in q:  #这里我对pythonds库的Queue类添加了一个__contains__方法
+                    if nextVert not in q: 
                         q.enqueue(nextVert)
 
     def shortestPathTo(self,w):
