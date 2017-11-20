@@ -9,6 +9,7 @@
 这里向各位使用python学数据结构的同学们推荐一本书：《Problem Solving with Algorithms and Data Structures using Python》
 我尝试过在国内寻找用python讲数据结构的教材，唯一的那么一两本还都惨不忍睹。
 这本是在国外非常出名的教材，作者非常良心的制作了带IDE的网页版本，地址：http://interactivepython.org/courselib/static/pythonds/index.html
+如果你是数据结构的小白，那么我建议你在学网课之前先详读这本书。
 强烈建议读英文原版，如果实在要翻译版本的同学可以联系我。
 另外，我在项目中将多次调用pythonds这个库，而这个库就是上述这本书的作者创建的
 安装方法很简单，直接pip install pythonds即可
