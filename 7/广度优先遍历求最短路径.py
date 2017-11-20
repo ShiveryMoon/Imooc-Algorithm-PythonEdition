@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from pythonds import Queue
-from repo import SparseGraph,buildGraphFromFile
+from repo import SparseGraph,buildGraphFromFile,Queue
 
 class ShortestPath(object):
     def __init__(self,aGraph,start):

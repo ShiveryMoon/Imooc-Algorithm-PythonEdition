@@ -1,11 +1,30 @@
 # -*- coding: utf-8 -*-
 from random import randint
-from pythonds import Queue
 import re
 import sys
 #由于本人比较懒，把课程的所有代码全都堆到这一个文件里了，不太利于阅读，抱歉。。。
 #不过，这里的代码是严格按照课程顺序的。
 #强烈推荐使用Ctrl+F来查找对应的代码
+
+'''Queue'''#只是因为后面有算法需要使用队列，我才在这里实现了一个队列的。对其他基础数据结构的实现不在此课程范围内。
+class Queue:
+    def __init__(self):
+        self.items = []
+
+    def isEmpty(self):
+        return self.items == []
+
+    def enqueue(self, item):
+        self.items.insert(0, item)
+
+    def dequeue(self):
+        return self.items.pop()
+
+    def size(self):
+        return len(self.items)
+
+    def __contains__(self, k):
+        return k in self.items
 
 '''BubbleSort'''
 def bubbleSort(alist):

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from repo import SparseGraph,buildGraphFromFile
-from pythonds import Queue
+from repo import SparseGraph,buildGraphFromFile,Queue
 #spfa算法就是用队列进行优化的Bellman-Ford算法，老师在9-6提到过。相关资料自行百度。
 #spfa算法的时间复杂度是O(KE)，其中K<=2
 
