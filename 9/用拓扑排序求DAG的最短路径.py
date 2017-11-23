@@ -13,15 +13,15 @@ class TopologicalSort(object):
             vert.setVisited(False)
         for vert in self.graph:
             if not vert.visited():
-                self._dps(vert)
+                self._dfs(vert)
         self.isSorted=True
         self.vertList.reverse()
 
-    def _dps(self,startVert):
+    def _dfs(self,startVert):
         startVert.setVisited(True)
         for nextVert in startVert.getConnections():
             if not nextVert.visited():
-                self._dps(nextVert)
+                self._dfs(nextVert)
         self.vertList.append(startVert) #理解这段代码是理解拓扑排序的关键
 
     def showListById(self):
