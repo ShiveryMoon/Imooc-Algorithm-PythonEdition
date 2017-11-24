@@ -73,7 +73,9 @@ class MaxHeap(object):
 
     def HeapSort(self,alist):
         self.buildHeap(alist)
-        return [self.delFirst() for x in range(self.currentSize)]
+        sortedList=[self.delFirst() for x in range(self.currentSize)]
+        sortedList.reverse()
+        return sortedList
 
     def HeapSortInPlace(self,alist):
         self.buildHeap(alist)
@@ -81,7 +83,7 @@ class MaxHeap(object):
             self.heapList[1],self.heapList[self.currentSize]=self.heapList[self.currentSize],self.heapList[1]
             self.currentSize-=1
             self.shiftDown(1)
-        return self.heapList
+        return self.heapList[1:]
 
 class MinHeap(MaxHeap): #最小堆，继承自MaxHeap，覆盖了父类的上浮和下沉操作，酌情使用。
     def __init__(self):
