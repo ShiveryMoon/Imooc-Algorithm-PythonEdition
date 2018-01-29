@@ -129,6 +129,11 @@ print(prim.result())
 然而我本身就是创建的Vertex类，优先队列里的数据本来也只有V个。
 所以，我并不需要把OElogE优化成OElogV，我本来就是OElogV。
 
+不过我也分析一下老师的lazy Prim和优化后的Prim的区别。
+lazy Prim对于加入优先队列的边没有处理：1.会形成环的边 2.比当前该点已经接入生成树的边权重还要大的边
+这两种边肯定不属于最终的最小生成树，但lazy Prim还是把他们加入了优先队列，这就会进行无谓的比较。
+优化后的Prim处理了这两种情况的边。就按照我的代码来说，第102行的两个判断条件就是为了防止这两种情况。
+
 还有一点，老师所说的时间复杂度里没有算上buildheap，他直接考虑的就是while循环里的时间复杂度
 事实上，buildheap是OV，调用V次delMin是OVlogV。老师在视频里直接把调用delMin(extractMin)的时间复杂度揉进了decreaseKey(insert)里
 所以算上buildheap的话，整个Prim算法的时间复杂度是O((V+E)logV)
