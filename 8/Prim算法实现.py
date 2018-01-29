@@ -101,7 +101,9 @@ class Prim(object):
                 newCost=currentVertex.getWeight(nextVertex)
                 if nextVertex in pq and newCost<nextVertex.getDistance():
                     #这两个判断条件，第一个条件（同时也是为了pq.change正常调用）保证了nextVertex是蓝色的点(即不属于已经生成的最小生成树)。
-                    #第二个条件保证了每个节点接入树的那条边是权值最小的边。
+                    #第二个条件保证了每个节点能够在多条连入最小生成树的边中，选择权值最小的边，即dist中存入权值最小的边。
+					#比如，A和B已经属于红色阵营，AC=1，BC=2，那么，第二个判断条件会让C的dist存1，让c的pred存A。
+					#但这并不意味着AC就一定属于最终的最小生成树。在AC被排出优先队列前，c的dist还有可能会更新成更小的权值。
                     #事实上对于我这个Prim算法的实现方式，这根本算不上优化，这是很正常实现方式。
                     nextVertex.setPred(currentVertex)
                     nextVertex.setDistance(newCost)
