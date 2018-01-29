@@ -65,9 +65,10 @@ class PriorityQueue(object):
                 return True
         return False
 
-    def change(self,dist,vtx):#书上此函数的原名是decreaseKey
+    def change(self,dist,vtx):
+		#书上此函数的原名是decreaseKey
         #书上说这个函数的时间复杂度是OlogV，那我就来强行分析一波
-        #由于不是索引堆，这里要用while遍历来寻找索引i，是个缺点，但问题不大。
+        #由于不是索引堆，这里要用while遍历来寻找索引i，是个缺点，但问题不大(如果是索引堆的话，找到i的复杂度是O1)。
         #因为虽然while循环看上去是OV，但是第一，这个heapArray是在不断变小的，最后为0。
         #第二，while循环里是不会遍历到后面的maxsize节点的，永远都是遍历到前面一部分就找到vtx的索引了。（除非你瞎传一个vtx进来）
         #所以while循环比OV小，那就是logV好了。
@@ -99,7 +100,7 @@ class Prim(object):
             for nextVertex in currentVertex.getConnections():
                 newCost=currentVertex.getWeight(nextVertex)
                 if nextVertex in pq and newCost<nextVertex.getDistance():
-                    #这两个判断条件，第一个条件（同时也是为了pq.decreaseKey正常调用）保证了pq里所有节点的self.dist（maxsize不算）所代表的边都是横切边
+                    #这两个判断条件，第一个条件（同时也是为了pq.change正常调用）保证了nextVertex是蓝色的点(即不属于已经生成的最小生成树)。
                     #第二个条件保证了每个节点接入树的那条边是权值最小的边。
                     #事实上对于我这个Prim算法的实现方式，这根本算不上优化，这是很正常实现方式。
                     nextVertex.setPred(currentVertex)
@@ -126,9 +127,7 @@ print(prim.result())
 老师因为创建的是edge类，所以他一开始的优先队列里的数据有E个，优先队列相关操作就是logE
 他后来使用了索引堆，就是为了让优先队列里的数据只有V个。
 然而我本身就是创建的Vertex类，优先队列里的数据本来也只有V个。
-
-老师的LazyPrim，他说是OElogE，优化后Prim是OElogV
-这里，优化之前的OE比优化之后的OE要大很多，因为很多边都是重复的，这也是为什么老师在8-4最后一分钟说OE也变小了的原因。
+所以，我并不需要把OElogE优化成OElogV，我本来就是OElogV。
 
 还有一点，老师所说的时间复杂度里没有算上buildheap，他直接考虑的就是while循环里的时间复杂度
 事实上，buildheap是OV，调用V次delMin是OVlogV。老师在视频里直接把调用delMin(extractMin)的时间复杂度揉进了decreaseKey(insert)里
