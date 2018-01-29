@@ -131,6 +131,10 @@ print(prim.result())
 然而我本身就是创建的Vertex类，优先队列里的数据本来也只有V个。
 所以，我并不需要把OElogE优化成OElogV，我本来就是OElogV。
 
+至于OE是哪里来的？OE是while循环+for循环产生的。虽然第一眼看上去，while中内嵌了一个for，是双重循环，怎么合起来只是OE呢？
+因为，我们实际上是在遍历边。while选出下一个currentVertex，而for循环中的if使得for只会遍历currentVertex的邻边中那些没有遍历过的边
+所以while+for的实际作用是不重复地遍历所有的边，算法复杂度为OE。
+
 不过我也分析一下老师的lazy Prim和优化后的Prim的区别。
 lazy Prim对于加入优先队列的边没有处理：1.会形成环的边 2.比当前该点已经接入生成树的边权重还要大的边
 这两种边肯定不属于最终的最小生成树，但lazy Prim还是把他们加入了优先队列，这就会进行无谓的比较。
