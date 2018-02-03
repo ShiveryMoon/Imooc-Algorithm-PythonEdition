@@ -18,10 +18,10 @@ class Kruskal(object):
             for nextVert in currentVert.getConnections():
                 if nextVert in vtxList: #不能往edgesList里添加重复的边
                     self.edgesList.append((currentVert.getWeight(nextVert),'%s-%s' % (nextVert.getId(),currentVert.getId())))
-        self.edgesList.sort()
 
     def spanTree(self):
         self._getEdges()
+		self.edgesList.sort()
         uf=UnionFind(self.graph.getVertNum())
         for tuple in self.edgesList:
             if len(self.edgesOfTree) == self.graph.getVertNum():
